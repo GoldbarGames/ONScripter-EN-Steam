@@ -1,0 +1,69 @@
+MPEGring.lo: MPEGring.cpp \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdlib.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/_mingw.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stddef.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdio.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stdarg.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/sys/types.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/assert.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/string.h \
+ c:/onscripter/extlib/include/SDL/SDL_timer.h \
+ c:/onscripter/extlib/include/SDL/SDL_stdinc.h \
+ c:/onscripter/extlib/include/SDL/SDL_config.h \
+ c:/onscripter/extlib/include/SDL/SDL_platform.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/strings.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/inttypes.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdint.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ctype.h \
+ c:/onscripter/extlib/include/SDL/begin_code.h \
+ c:/onscripter/extlib/include/SDL/close_code.h \
+ c:/onscripter/extlib/include/SDL/SDL_error.h MPEGring.h \
+ c:/onscripter/extlib/include/SDL/SDL_types.h \
+ c:/onscripter/extlib/include/SDL/SDL_thread.h \
+ c:/onscripter/extlib/include/SDL/SDL_mutex.h
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdlib.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/_mingw.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stddef.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdio.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stdarg.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/sys/types.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/assert.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/string.h:
+
+c:/onscripter/extlib/include/SDL/SDL_timer.h:
+
+c:/onscripter/extlib/include/SDL/SDL_stdinc.h:
+
+c:/onscripter/extlib/include/SDL/SDL_config.h:
+
+c:/onscripter/extlib/include/SDL/SDL_platform.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/strings.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/inttypes.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdint.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ctype.h:
+
+c:/onscripter/extlib/include/SDL/begin_code.h:
+
+c:/onscripter/extlib/include/SDL/close_code.h:
+
+c:/onscripter/extlib/include/SDL/SDL_error.h:
+
+MPEGring.h:
+
+c:/onscripter/extlib/include/SDL/SDL_types.h:
+
+c:/onscripter/extlib/include/SDL/SDL_thread.h:
+
+c:/onscripter/extlib/include/SDL/SDL_mutex.h:

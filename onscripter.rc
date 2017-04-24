@@ -1,0 +1,28 @@
+#include "winres.h"
+
+ONSCRICON ICON "ons-en.ico"
+
+1 VERSIONINFO
+FILEVERSION 2011, 6, 28, 0
+PRODUCTVERSION 2011, 6, 28, 0
+FILEFLAGS 32
+FILEOS 4
+FILETYPE 1
+{
+   BLOCK "StringFileInfo" {
+       //language ID = U.S. English, charset = Unicode
+       BLOCK "040904B0" {
+           VALUE "FileDescription", "ONScripter-EN"
+           VALUE "OriginalFilename", "onscripter-en.exe"
+           VALUE "CompanyName", "Ogapee/Haeleth/Sonozaki"
+           VALUE "FileVersion", "2011-06-28"
+           VALUE "LegalCopyright", "Copyright 1998-2011 Studio O.G.A. Portions copyright 2005-2006 insani, 2006-2009 Haeleth, 2007-2011 Sonozaki."
+           VALUE "ProductName", "ONScripter-EN"
+           VALUE "ProductVersion", "2011-06-28"
+       }
+   }
+   BLOCK "VarFileInfo" {
+       VALUE "Translation", 0x0409, 0x04B0 // U.S. English, Unicode
+       //VALUE "Translation", 0x0411, 0x03A4 // Japanese, Shift-JIS
+   }
+}

@@ -1,0 +1,7 @@
+floatdct.lo: video/floatdct.cpp \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/math.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/_mingw.h
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/math.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/_mingw.h:

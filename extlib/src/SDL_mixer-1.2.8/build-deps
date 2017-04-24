@@ -1,0 +1,216 @@
+$(objects)/effect_position.lo: ./effect_position.c \
+	./SDL_mixer.h \
+	./effects_internal.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./effect_position.c  -o $@
+
+
+$(objects)/effect_stereoreverse.lo: ./effect_stereoreverse.c \
+	./SDL_mixer.h \
+	./effects_internal.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./effect_stereoreverse.c  -o $@
+
+
+$(objects)/effects_internal.lo: ./effects_internal.c \
+	./SDL_mixer.h \
+	./effects_internal.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./effects_internal.c  -o $@
+
+
+$(objects)/load_aiff.lo: ./load_aiff.c \
+	./SDL_mixer.h \
+	./load_aiff.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./load_aiff.c  -o $@
+
+
+$(objects)/load_voc.lo: ./load_voc.c \
+	./SDL_mixer.h \
+	./load_voc.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./load_voc.c  -o $@
+
+
+$(objects)/mixer.lo: ./mixer.c \
+	./SDL_mixer.h \
+	./effects_internal.h \
+	./load_aiff.h \
+	./load_ogg.h \
+	./load_voc.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mixer.c  -o $@
+
+
+$(objects)/music.lo: ./music.c \
+	./SDL_mixer.h \
+	./dynamic_mp3.h \
+	./music_cmd.h \
+	./music_ogg.h \
+	./wavestream.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./music.c  -o $@
+
+
+$(objects)/wavestream.lo: ./wavestream.c \
+	./SDL_mixer.h \
+	./wavestream.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./wavestream.c  -o $@
+
+
+$(objects)/drv_nos.lo: ./mikmod/drv_nos.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/drv_nos.c  -o $@
+
+
+$(objects)/load_it.lo: ./mikmod/load_it.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/load_it.c  -o $@
+
+
+$(objects)/load_mod.lo: ./mikmod/load_mod.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/load_mod.c  -o $@
+
+
+$(objects)/load_s3m.lo: ./mikmod/load_s3m.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/load_s3m.c  -o $@
+
+
+$(objects)/load_xm.lo: ./mikmod/load_xm.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/load_xm.c  -o $@
+
+
+$(objects)/mdreg.lo: ./mikmod/mdreg.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mdreg.c  -o $@
+
+
+$(objects)/mdriver.lo: ./mikmod/mdriver.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mdriver.c  -o $@
+
+
+$(objects)/mloader.lo: ./mikmod/mloader.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mloader.c  -o $@
+
+
+$(objects)/mlreg.lo: ./mikmod/mlreg.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mlreg.c  -o $@
+
+
+$(objects)/mlutil.lo: ./mikmod/mlutil.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mlutil.c  -o $@
+
+
+$(objects)/mmalloc.lo: ./mikmod/mmalloc.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mmalloc.c  -o $@
+
+
+$(objects)/mmerror.lo: ./mikmod/mmerror.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mmerror.c  -o $@
+
+
+$(objects)/mmio.lo: ./mikmod/mmio.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mmio.c  -o $@
+
+
+$(objects)/mplayer.lo: ./mikmod/mplayer.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mplayer.c  -o $@
+
+
+$(objects)/munitrk.lo: ./mikmod/munitrk.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/munitrk.c  -o $@
+
+
+$(objects)/mwav.lo: ./mikmod/mwav.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/mwav.c  -o $@
+
+
+$(objects)/npertab.lo: ./mikmod/npertab.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/npertab.c  -o $@
+
+
+$(objects)/sloader.lo: ./mikmod/sloader.c \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/sloader.c  -o $@
+
+
+$(objects)/virtch.lo: ./mikmod/virtch.c \
+	./mikmod/mikmod_internals.h \
+	./mikmod/virtch_common.c \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/virtch.c  -o $@
+
+
+$(objects)/virtch2.lo: ./mikmod/virtch2.c \
+	./mikmod/mikmod_internals.h \
+	./mikmod/virtch_common.c \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/virtch2.c  -o $@
+
+
+$(objects)/virtch_common.lo: ./mikmod/virtch_common.c \
+	./mikmod/mikmod_internals.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./mikmod/virtch_common.c  -o $@
+
+
+$(objects)/native_midi_common.lo: ./native_midi/native_midi_common.c \
+	./SDL_mixer.h \
+	./native_midi/native_midi_common.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./native_midi/native_midi_common.c  -o $@
+
+
+$(objects)/native_midi_mac.lo: ./native_midi/native_midi_mac.c \
+	./native_midi/native_midi.h \
+	./native_midi/native_midi_common.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./native_midi/native_midi_mac.c  -o $@
+
+
+$(objects)/native_midi_win32.lo: ./native_midi/native_midi_win32.c \
+	./native_midi/native_midi.h \
+	./native_midi/native_midi_common.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./native_midi/native_midi_win32.c  -o $@
+
+
+$(objects)/dynamic_mp3.lo: ./dynamic_mp3.c \
+	./dynamic_mp3.h \
+
+	$(LIBTOOL) --mode=compile $(CC) $(CFLAGS) $(EXTRA_CFLAGS) -c ./dynamic_mp3.c  -o $@
+
+

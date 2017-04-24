@@ -1,0 +1,290 @@
+mpegtoraw.lo: audio/mpegtoraw.cpp \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/math.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/_mingw.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdlib.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stddef.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/string.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/assert.h \
+ MPEGaudio.h c:/onscripter/extlib/include/SDL/SDL.h \
+ c:/onscripter/extlib/include/SDL/SDL_main.h \
+ c:/onscripter/extlib/include/SDL/SDL_stdinc.h \
+ c:/onscripter/extlib/include/SDL/SDL_config.h \
+ c:/onscripter/extlib/include/SDL/SDL_platform.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/sys/types.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdio.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stdarg.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/strings.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/inttypes.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdint.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ctype.h \
+ c:/onscripter/extlib/include/SDL/begin_code.h \
+ c:/onscripter/extlib/include/SDL/close_code.h \
+ c:/onscripter/extlib/include/SDL/SDL_audio.h \
+ c:/onscripter/extlib/include/SDL/SDL_error.h \
+ c:/onscripter/extlib/include/SDL/SDL_endian.h \
+ c:/onscripter/extlib/include/SDL/SDL_mutex.h \
+ c:/onscripter/extlib/include/SDL/SDL_thread.h \
+ c:/onscripter/extlib/include/SDL/SDL_rwops.h \
+ c:/onscripter/extlib/include/SDL/SDL_cdrom.h \
+ c:/onscripter/extlib/include/SDL/SDL_cpuinfo.h \
+ c:/onscripter/extlib/include/SDL/SDL_events.h \
+ c:/onscripter/extlib/include/SDL/SDL_active.h \
+ c:/onscripter/extlib/include/SDL/SDL_keyboard.h \
+ c:/onscripter/extlib/include/SDL/SDL_keysym.h \
+ c:/onscripter/extlib/include/SDL/SDL_mouse.h \
+ c:/onscripter/extlib/include/SDL/SDL_video.h \
+ c:/onscripter/extlib/include/SDL/SDL_joystick.h \
+ c:/onscripter/extlib/include/SDL/SDL_quit.h \
+ c:/onscripter/extlib/include/SDL/SDL_loadso.h \
+ c:/onscripter/extlib/include/SDL/SDL_timer.h \
+ c:/onscripter/extlib/include/SDL/SDL_version.h MPEGerror.h MPEGaction.h \
+ MPEGfilter.h MPEGring.h c:/onscripter/extlib/include/SDL/SDL_types.h \
+ c:/onscripter/extlib/include/SDL/SDL_thread.h MPEGstream.h MPEGvideo.h \
+ MPEGaudio.h MPEGlist.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/windows.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/windef.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winnt.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winerror.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/basetsd.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/pshpack4.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/poppack.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/wincon.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winbase.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/wingdi.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winuser.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winnls.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winver.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winnetwk.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winreg.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winsvc.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/cderr.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/dde.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ddeml.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/dlgs.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/imm.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/lzexpand.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/mmsystem.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/nb30.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpc.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcdce.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/basetyps.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcdcep.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcnsi.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcnterr.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/shellapi.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/pshpack2.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winperf.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/commdlg.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winspool.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winsock2.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ole2.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/objbase.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcndr.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcnsip.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/objfwd.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/wtypes.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/unknwn.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/objidl.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/cguid.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/olectlid.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/oleauto.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/oaidl.h \
+ c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/oleidl.h
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/math.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/_mingw.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdlib.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stddef.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/string.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/assert.h:
+
+MPEGaudio.h:
+
+c:/onscripter/extlib/include/SDL/SDL.h:
+
+c:/onscripter/extlib/include/SDL/SDL_main.h:
+
+c:/onscripter/extlib/include/SDL/SDL_stdinc.h:
+
+c:/onscripter/extlib/include/SDL/SDL_config.h:
+
+c:/onscripter/extlib/include/SDL/SDL_platform.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/sys/types.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdio.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/include/stdarg.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/strings.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/inttypes.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/stdint.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ctype.h:
+
+c:/onscripter/extlib/include/SDL/begin_code.h:
+
+c:/onscripter/extlib/include/SDL/close_code.h:
+
+c:/onscripter/extlib/include/SDL/SDL_audio.h:
+
+c:/onscripter/extlib/include/SDL/SDL_error.h:
+
+c:/onscripter/extlib/include/SDL/SDL_endian.h:
+
+c:/onscripter/extlib/include/SDL/SDL_mutex.h:
+
+c:/onscripter/extlib/include/SDL/SDL_thread.h:
+
+c:/onscripter/extlib/include/SDL/SDL_rwops.h:
+
+c:/onscripter/extlib/include/SDL/SDL_cdrom.h:
+
+c:/onscripter/extlib/include/SDL/SDL_cpuinfo.h:
+
+c:/onscripter/extlib/include/SDL/SDL_events.h:
+
+c:/onscripter/extlib/include/SDL/SDL_active.h:
+
+c:/onscripter/extlib/include/SDL/SDL_keyboard.h:
+
+c:/onscripter/extlib/include/SDL/SDL_keysym.h:
+
+c:/onscripter/extlib/include/SDL/SDL_mouse.h:
+
+c:/onscripter/extlib/include/SDL/SDL_video.h:
+
+c:/onscripter/extlib/include/SDL/SDL_joystick.h:
+
+c:/onscripter/extlib/include/SDL/SDL_quit.h:
+
+c:/onscripter/extlib/include/SDL/SDL_loadso.h:
+
+c:/onscripter/extlib/include/SDL/SDL_timer.h:
+
+c:/onscripter/extlib/include/SDL/SDL_version.h:
+
+MPEGerror.h:
+
+MPEGaction.h:
+
+MPEGfilter.h:
+
+MPEGring.h:
+
+c:/onscripter/extlib/include/SDL/SDL_types.h:
+
+c:/onscripter/extlib/include/SDL/SDL_thread.h:
+
+MPEGstream.h:
+
+MPEGvideo.h:
+
+MPEGaudio.h:
+
+MPEGlist.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/windows.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/windef.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winnt.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winerror.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/basetsd.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/pshpack4.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/poppack.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/wincon.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winbase.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/wingdi.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winuser.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winnls.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winver.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winnetwk.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winreg.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winsvc.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/cderr.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/dde.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ddeml.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/dlgs.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/imm.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/lzexpand.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/mmsystem.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/nb30.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpc.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcdce.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/basetyps.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcdcep.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcnsi.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcnterr.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/shellapi.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/pshpack2.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winperf.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/commdlg.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winspool.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/winsock2.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/ole2.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/objbase.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcndr.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/rpcnsip.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/objfwd.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/wtypes.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/unknwn.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/objidl.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/cguid.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/olectlid.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/oleauto.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/oaidl.h:
+
+c:\mingw32\bin\../lib/gcc/mingw32/4.4.0/../../../../include/oleidl.h:
