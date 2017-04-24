@@ -55,6 +55,8 @@
 #include <errno.h>
 #endif
 
+#include <steam_api.h>
+
 #define DEFAULT_CURSOR_WAIT    ":l/3,160,2;cursor0.bmp"
 #define DEFAULT_CURSOR_NEWPAGE ":l/3,160,2;cursor1.bmp"
 
@@ -4543,5 +4545,23 @@ int ONScripterLabel::insertmenuCommand()
 int ONScripterLabel::resetmenuCommand()
 {
     script_h.skipToken();
+    return RET_CONTINUE;
+}
+
+int ONScripterLabel::steamsetachieveCommand() {
+    const char *buf = script_h.readStr();
+    /* Noop if steam isn't defined so scripts with this command work anyways */
+
+    if(SteamUserStats()) {
+      if(!SteamUserStats()->SetAchievement(buf)) {
+        //fprintf(stderr, "Error setting achievement %s\n", );
+      } else {
+        // Trigger the little "Achievement Get" dialog
+        SteamUserStats()->StoreStats();
+      }
+    } else {
+      fprintf(stderr, "Not setting achivement, no Steam\n");
+    }
+
     return RET_CONTINUE;
 }

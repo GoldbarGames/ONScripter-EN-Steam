@@ -194,6 +194,7 @@ public:
     int systemcallCommand();
     int strspCommand();
     int stopCommand();
+    int steamsetachieveCommand();
     int sp_rgb_gradationCommand();
     int spstrCommand();
     int spreloadCommand();
@@ -416,6 +417,7 @@ protected:
     bool waitEvent(int count);
     void trapHandler();
     void initSDL();
+    void initSteam();
     void openAudio(int freq=DEFAULT_AUDIO_RATE, Uint16 format=MIX_DEFAULT_FORMAT, int channels=MIX_DEFAULT_CHANNELS);
 
 private:
