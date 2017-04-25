@@ -55,6 +55,8 @@
 #include <errno.h>
 #endif
 
+#include "steam_api_wrapper.h"
+
 #define DEFAULT_CURSOR_WAIT    ":l/3,160,2;cursor0.bmp"
 #define DEFAULT_CURSOR_NEWPAGE ":l/3,160,2;cursor1.bmp"
 
@@ -3435,7 +3437,7 @@ int ONScripterLabel::dvCommand()
 
 int ONScripterLabel::drawtextCommand()
 {
-    SDL_Rect clip = {0, 0, accumulation_surface->w, accumulation_surface->h};
+    SDL_Rect clip = {0, 0, (short unsigned int) accumulation_surface->w, (short unsigned int) accumulation_surface->h};
     text_info.blendOnSurface( accumulation_surface, 0, 0, clip );
 
     return RET_CONTINUE;
@@ -3467,7 +3469,7 @@ int ONScripterLabel::drawsp3Command()
         si.inv_mat[1][1] =  si.mat[0][0] * 1000 / denom;
     }
 
-    SDL_Rect clip = {0, 0, screen_surface->w, screen_surface->h};
+    SDL_Rect clip = {0, 0, (short unsigned int) screen_surface->w, (short unsigned int) screen_surface->h};
     si.blendOnSurface2( accumulation_surface, x, y, clip, alpha );
     si.setCell(old_cell_no);
 
@@ -3490,7 +3492,7 @@ int ONScripterLabel::drawsp2Command()
     si.calcAffineMatrix();
     si.setCell(cell_no);
 
-    SDL_Rect clip = {0, 0, screen_surface->w, screen_surface->h};
+    SDL_Rect clip = {0, 0, (short unsigned int) screen_surface->w, (short unsigned int) screen_surface->h};
     si.blendOnSurface2( accumulation_surface, si.pos.x, si.pos.y, clip, alpha );
 
     return RET_CONTINUE;
@@ -3507,7 +3509,7 @@ int ONScripterLabel::drawspCommand()
     AnimationInfo &si = sprite_info[sprite_no];
     int old_cell_no = si.current_cell;
     si.setCell(cell_no);
-    SDL_Rect clip = {0, 0, accumulation_surface->w, accumulation_surface->h};
+    SDL_Rect clip = {0, 0, (short unsigned int) accumulation_surface->w, (short unsigned int) accumulation_surface->h};
     si.blendOnSurface( accumulation_surface, x, y, clip, alpha );
     si.setCell(old_cell_no);
 
@@ -3534,7 +3536,7 @@ int ONScripterLabel::drawclearCommand()
 
 int ONScripterLabel::drawbgCommand()
 {
-    SDL_Rect clip = {0, 0, accumulation_surface->w, accumulation_surface->h};
+    SDL_Rect clip = {0, 0, (short unsigned int) accumulation_surface->w, (short unsigned int) accumulation_surface->h};
     bg_info.blendOnSurface( accumulation_surface, bg_info.pos.x, bg_info.pos.y, clip );
 
     return RET_CONTINUE;
@@ -3551,7 +3553,7 @@ int ONScripterLabel::drawbg2Command()
     bi.rot = script_h.readInt();
     bi.calcAffineMatrix();
 
-    SDL_Rect clip = {0, 0, screen_surface->w, screen_surface->h};
+    SDL_Rect clip = {0, 0, (short unsigned int) screen_surface->w, (short unsigned int) screen_surface->h};
     bi.blendOnSurface2( accumulation_surface, bi.pos.x, bi.pos.y,
                         clip, 256 );
 
@@ -4007,9 +4009,8 @@ int ONScripterLabel::btnwaitCommand()
                     sprite_info[ cur_button_link->sprite_no ].setCell(0);
                 }
                 else if ( cur_button_link->button_type == ButtonLink::TEXT_BUTTON ){
-                    if (txtbtn_visible)
-                        cur_button_link->show_flag = 1;
-                        sprite_info[ cur_button_link->sprite_no ].setCell(0);
+                    if (txtbtn_visible) cur_button_link->show_flag = 1;
+                    sprite_info[ cur_button_link->sprite_no ].setCell(0);
                 }
                 else if ( cur_button_link->anim[1] != NULL ){
                     cur_button_link->show_flag = 2;
@@ -4217,8 +4218,8 @@ int ONScripterLabel::brCommand()
 
 int ONScripterLabel::bltCommand()
 {
-    int dx,dy,dw,dh;
-    int sx,sy,sw,sh;
+    short unsigned int sw, sh, dw,dh;
+    short int sx,sy, dx,dy;
 
     dx = StretchPosX(script_h.readInt());
     dy = StretchPosY(script_h.readInt());
@@ -4254,7 +4255,7 @@ int ONScripterLabel::bltCommand()
         int src_width = btndef_info.image_surface->pitch / 4;
 #endif
 
-        int start_y = dy, end_y = dy+dh;
+        short int start_y = dy, end_y = dy+dh;
         if (dh < 0){
             start_y = dy+dh;
             end_y = dy;
@@ -4262,7 +4263,7 @@ int ONScripterLabel::bltCommand()
         if (start_y < 0) start_y = 0;
         if (end_y > screen_height) end_y = screen_height;
 
-        int start_x = dx, end_x = dx+dw;
+        short int start_x = dx, end_x = dx+dw;
         if (dw < 0){
             start_x = dx+dw;
             end_x = dx;
@@ -4286,8 +4287,11 @@ int ONScripterLabel::bltCommand()
         }
         SDL_UnlockSurface(btndef_info.image_surface);
         SDL_UnlockSurface(accumulation_surface);
+        
+        unsigned short int diff_x = end_x - start_x;
+        unsigned short int diff_y = end_y - start_y;
 
-        SDL_Rect dst_rect = {start_x, start_y, end_x-start_x, end_y-start_y};
+        SDL_Rect dst_rect = {start_x, start_y, diff_x, diff_y};
         flushDirect( (SDL_Rect&)dst_rect, REFRESH_NONE_MODE );
     }
 
@@ -4543,5 +4547,25 @@ int ONScripterLabel::insertmenuCommand()
 int ONScripterLabel::resetmenuCommand()
 {
     script_h.skipToken();
+    return RET_CONTINUE;
+}
+
+int ONScripterLabel::steamsetachieveCommand() {
+  
+  /* Temporarily comment out while using steam api wrapper
+    const char *buf = script_h.readStr();
+    Noop if steam isn't defined so scripts with this command work anyways 
+
+    if(SteamUserStats()) {
+      if(!SteamUserStats()->SetAchievement(buf)) {
+        //fprintf(stderr, "Error setting achievement %s\n", );
+      } else {
+        // Trigger the little "Achievement Get" dialog
+        SteamUserStats()->StoreStats();
+      }
+    } else {
+      fprintf(stderr, "Not setting achivement, no Steam\n");
+    }*/
+
     return RET_CONTINUE;
 }

@@ -190,7 +190,7 @@ int ONScripterLabel::loadSaveFile( int no, bool input_flag )
     }
 
     char *str = NULL;
-    int  i, j, k, address;
+    int  i, j, k;
     int  file_version;
 
     /* ---------------------------------------- */
@@ -250,9 +250,8 @@ int ONScripterLabel::loadSaveFile( int no, bool input_flag )
         current_page->max_text = (num_xy[0]*2+1)*num_xy[1];
         if (sentence_font.getTateyokoMode() == Fontinfo::TATE_MODE)
             current_page->max_text = (num_xy[1]*2+1)*num_xy[0];
-        int xy[2];
-        xy[0] = readInt();
-        xy[1] = readInt();
+        readInt();
+        readInt();
         if ( current_page->text ) delete[] current_page->text;
         current_page->text = new char[ current_page->max_text ];
         current_page->text_count = 0;
@@ -380,7 +379,7 @@ int ONScripterLabel::loadSaveFile( int no, bool input_flag )
             if ( file_version >= 102 )
                 readInt();
 
-            address = readInt();
+            readInt();
         }
         else{
             offset += readInt();

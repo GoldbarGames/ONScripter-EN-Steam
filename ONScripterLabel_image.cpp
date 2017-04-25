@@ -412,7 +412,7 @@ void ONScripterLabel::alphaBlendText( SDL_Surface *dst_surface, SDL_Rect dst_rec
 
     /* ---------------------------------------- */
     /* 2nd clipping */
-    SDL_Rect clip_rect = {0, 0, dst_surface->w, dst_surface->h};
+    SDL_Rect clip_rect = {0, 0, (short unsigned int) dst_surface->w, (short unsigned int) dst_surface->h};
     if ( AnimationInfo::doClipping( &dst_rect, &clip_rect, &clipped_rect ) ) return;
     
     x2 += clipped_rect.x;
@@ -500,7 +500,7 @@ void ONScripterLabel::refreshSurface( SDL_Surface *surface, SDL_Rect *clip_src, 
 {
     if (refresh_mode == REFRESH_NONE_MODE) return;
 
-    SDL_Rect clip = {0, 0, surface->w, surface->h};
+    SDL_Rect clip = {0, 0, (short unsigned int) surface->w, (short unsigned int) surface->h};
     if (clip_src) if ( AnimationInfo::doClipping( &clip, clip_src ) ) return;
 
     int i, top;
@@ -670,7 +670,7 @@ void ONScripterLabel::createBackground()
 
         bg_info.fill(0, 0, 0, 0xff);
         if (anim.image_surface){
-            SDL_Rect src_rect = {0, 0, anim.image_surface->w, anim.image_surface->h};
+            SDL_Rect src_rect = {0, 0, (short unsigned int) anim.image_surface->w, (short unsigned int) anim.image_surface->h};
             SDL_Rect dst_rect = {0, 0, screen_width, screen_height};
             if (screen_width >= anim.image_surface->w){
                 dst_rect.x = (screen_width - anim.image_surface->w) / 2;

@@ -25,7 +25,7 @@
 
 #include "ONScripterLabel.h"
 
-#define BREAKUP_CELLWIDTH 24
+//#define BREAKUP_CELLWIDTH 24
 #define BREAKUP_CELLFORMS 16
 #define BREAKUP_MAX_CELL_X ((screen_width + BREAKUP_CELLWIDTH - 1)/BREAKUP_CELLWIDTH)
 #define BREAKUP_MAX_CELL_Y ((screen_height + BREAKUP_CELLWIDTH - 1)/BREAKUP_CELLWIDTH)
@@ -38,6 +38,8 @@
 #define BREAKUP_MODE_LEFT   2
 #define BREAKUP_MODE_PILEUP 4
 #define BREAKUP_MODE_JUMBLE 8
+
+const short int BREAKUP_CELLWIDTH = 24;
 
 const int breakup_disp_x[BREAKUP_DIRECTIONS] = { -7,-7,-5,-4,-2,1,3,5 }; 
 const int breakup_disp_y[BREAKUP_DIRECTIONS] = {  0, 2, 4, 6, 7,7,6,5 }; 
@@ -255,8 +257,8 @@ void ONScripterLabel::effectBreakup( char *params, int duration )
     bool *msk_buf = breakup_cellforms;
 
     for (int n=0; n<n_cells; ++n) {
-        SDL_Rect rect = { breakup_cells[n].cell_x * BREAKUP_CELLWIDTH,
-                          breakup_cells[n].cell_y * BREAKUP_CELLWIDTH, 
+        SDL_Rect rect = { (short int) (breakup_cells[n].cell_x * BREAKUP_CELLWIDTH),
+                          (short int) (breakup_cells[n].cell_y * BREAKUP_CELLWIDTH), 
                           BREAKUP_CELLWIDTH, BREAKUP_CELLWIDTH };
         breakup_cells[n].state += frame_diff;
         if (breakup_cells[n].state >= (BREAKUP_MOVE_FRAMES + BREAKUP_STILL_STATE)) {

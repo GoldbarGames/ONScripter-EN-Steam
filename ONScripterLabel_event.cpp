@@ -887,23 +887,30 @@ void ONScripterLabel::shiftCursorOnButton( int diff )
     for (int i = 0; i < shortcut_mouse_line; ++i)
         button = button->next;
 
-    if (button) {
+    if (button) 
+    {
         SDL_Rect clip = {0, 0, button->select_rect.w, button->select_rect.h};
         int x = button->select_rect.x;
         int y = button->select_rect.y;
-        if (x < 0) clip.x -= x;
-        else if (x > screen_width){
+        if (x < 0) 
+          clip.x -= x;
+        else if (x > screen_width)
+        {
             clip.w = 0;
             x = screen_width - 1;
         }
-        else if (x+clip.w > screen_width) clip.w = screen_width - x;
+        else if (x+clip.w > screen_width) 
+          clip.w = screen_width - x;
         if (y < 0) clip.y -= y;
-        else if (x > screen_width){
+        /*else if (x > screen_width)
+        {
             clip.h = 0;
             y = screen_height - 1;
-        }
-        else if (y+clip.h > screen_height) clip.h = screen_height - y;
-        if (transbtn_flag && (clip.x < (Sint16) clip.w) && (clip.y < (Sint16) clip.h)){
+        }*/
+        else if (y+clip.h > screen_height) 
+          clip.h = screen_height - y;
+        if (transbtn_flag && (clip.x < (Sint16) clip.w) && (clip.y < (Sint16) clip.h))
+        {
             AnimationInfo *anim = NULL;
             if ( button->button_type == ButtonLink::SPRITE_BUTTON ||
                  button->button_type == ButtonLink::EX_SPRITE_BUTTON )
@@ -913,7 +920,8 @@ void ONScripterLabel::shiftCursorOnButton( int diff )
             SDL_Rect pos = anim->findOpaquePoint(&clip);
             x += pos.x;
             y += pos.y;
-        } else {
+        } else 
+        {
             x += clip.x;
             y += clip.y;
         }

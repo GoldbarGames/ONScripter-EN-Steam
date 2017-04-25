@@ -363,7 +363,7 @@ protected:
     int preferred_width;
     int script_width, script_height;
     int screen_ratio1, screen_ratio2;
-    int screen_width, screen_height;
+    short unsigned int screen_width, screen_height;
     int screen_texture_width, screen_texture_height;
     int screen_bpp;
     char *version_str;
@@ -476,8 +476,10 @@ protected:
         Page(): next(NULL), previous(NULL),
                 text(NULL), max_text(0), text_count(0), tag(NULL){}
         ~Page(){
-            if (text) delete[] text; text = NULL;
-            if (tag)  delete[] tag;  tag = NULL;
+            if (text) delete[] text; 
+            text = NULL;
+            if (tag)  delete[] tag;  
+            tag = NULL;
             next = previous = NULL;
         }
         int add(unsigned char ch){

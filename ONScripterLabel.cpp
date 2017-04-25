@@ -71,6 +71,9 @@ typedef HRESULT (WINAPI *GETFOLDERPATH)(HWND, int, HANDLE, DWORD, LPTSTR);
 #include "resources.h"
 #endif
 
+
+#include "steam_api_wrapper.h"
+
 extern void initSJIS2UTF16();
 extern "C" void waveCallback( int channel );
 
@@ -120,6 +123,7 @@ static struct FuncLUT{
     {"strsph",   &ONScripterLabel::strspCommand},
     {"strsp",   &ONScripterLabel::strspCommand},
     {"stop",   &ONScripterLabel::stopCommand},
+    {"steamsetachieve", &ONScripterLabel::steamsetachieveCommand},
     {"sp_rgb_gradation",   &ONScripterLabel::sp_rgb_gradationCommand},
     {"spstr",   &ONScripterLabel::spstrCommand},
     {"spreload",   &ONScripterLabel::spreloadCommand},
@@ -347,7 +351,14 @@ static struct FuncHash{
 
 static void SDL_Quit_Wrapper()
 {
-    SDL_Quit();
+  SteamAPI_Shutdown();
+  SDL_Quit();
+}
+
+void ONScripterLabel::initSteam() {
+    if(!SteamAPI_Init()) {
+      fprintf(stderr, "Unable to initialize Steam; cloud and achievements won't work\n");
+    }
 }
 
 void ONScripterLabel::initSDL()
@@ -991,6 +1002,8 @@ void ONScripterLabel::setGameIdentifier(const char *gameid)
 
 int ONScripterLabel::init()
 {
+    initSteam();
+
     if (archive_path.get_num_paths() == 0) {
     
         //default archive_path is current directory ".", followed by parent ".."
@@ -2502,4 +2515,3 @@ int ONScripterLabel::getNumberFromBuffer( const char **buf )
 
     return ret;
 }
-

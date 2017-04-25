@@ -386,7 +386,7 @@ FILE *DirectReader::getFileHandle( const char *file_name, int &compression_type,
 //Mion: need to do more careful SJIS checking in this next part
     bool has_nonascii = false;
     for ( i=0 ; i<len ; i++ ){
-        if ((unsigned char)capital_name[i] >= 0x80)
+        if ((unsigned char)capital_name[i] >= 0x80 && !has_nonascii)
             has_nonascii = true;
         if (IS_TWO_BYTE(capital_name[i])) {
             i++;
