@@ -697,20 +697,27 @@ void ONScripterLabel::createBackground()
 void ONScripterLabel::SurfaceToTexture(SDL_Surface * surface)
 {
   
-  int Mode = surface->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB;
+  /* Clear the color and depth buffers. */
+  glClear( GL_COLOR_BUFFER_BIT );
+  
+  //int Mode = surface->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB;
+  
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glOrtho(0.0f, surface->w, surface->h, 0.0f, 0.0f, 1.0f);
     
-  glTexSubImage2D (GL_TEXTURE_2D, 0, Mode, surface->w, surface->h, 0, Mode, GL_UNSIGNED_BYTE, surface->pixels);
+  glTexSubImage2D (GL_TEXTURE_2D, 0, 0, 0, surface->w, surface->h, GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
    
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   
-  glBindTexture(GL_TEXTURE_2D, 0);
+  glBindTexture(GL_TEXTURE_2D, TextureID);
  
   // For Ortho mode, of course
   int X = 0;
   int Y = 0;
-  int Width = 100;
-  int Height = 100;
+  int Width = 800;
+  int Height = 600;
    
   glBegin(GL_QUADS);
       glTexCoord2f(0, 0); glVertex3f(X, Y, 0);

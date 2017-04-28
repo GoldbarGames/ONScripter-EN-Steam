@@ -567,16 +567,16 @@ void ONScripterLabel::initSDL()
     }
 #endif
 
-    SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 5 );
-    SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 5 );
-    SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 5 );
+    SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
+    SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
+    SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
     SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
     SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-    SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 ) ;
-    SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 ) ;
+    //SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 ) ;
+    //SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 ) ;
     
-    screen_width *= 1.5;
-    screen_height *= 1.5;
+    //screen_width *= 1.5;
+    //screen_height *= 1.5;
     
     screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG|(fullscreen_mode?SDL_FULLSCREEN:0) );
 
@@ -620,18 +620,10 @@ void ONScripterLabel::initSDL()
     
     
     // Initialize the texture
-    GLuint TextureID = 0;
  
     glGenTextures(1, &TextureID);
     glBindTexture(GL_TEXTURE_2D, TextureID);
-     
-    int Mode = GL_RGB;
-     
-    if(screen_surface->format->BytesPerPixel == 4) {
-        Mode = GL_RGBA;
-    }
-     
-    glTexImage2D(GL_TEXTURE_2D, 0, Mode, screen_surface->w, screen_surface->h, 0, Mode, GL_UNSIGNED_BYTE, screen_surface->pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, screen_surface->w, screen_surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, screen_surface->pixels);
     
     /* Draw it to the screen */
     SDL_GL_SwapBuffers( );
@@ -1888,7 +1880,10 @@ void ONScripterLabel::executeLabel()
 
   executeLabelTop:
 
-    while ( current_line<current_label_info.num_of_lines ){
+    while ( current_line<current_label_info.num_of_lines )
+    {
+      //glClear( GL_COLOR_BUFFER_BIT );
+      
         if ((debug_level > 0) && (last_token_line != current_line) &&
             (script_h.getStringBuffer()[0] != 0x0a)) {
             printf("\n*****  executeLabel %s:%d/%d:mode=%s *****\n",
@@ -1939,6 +1934,9 @@ void ONScripterLabel::executeLabel()
         if ( ret & RET_EOT ) processEOT();
         
         if (!(ret & RET_NO_READ)) readToken();
+        
+        SurfaceToTexture(accumulation_surface);
+        //SDL_GL_SwapBuffers( );
     }
 
     current_label_info = script_h.lookupLabelNext( current_label_info.name );

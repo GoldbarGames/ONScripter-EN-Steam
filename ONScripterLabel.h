@@ -730,6 +730,7 @@ private:
     /* ---------------------------------------- */
     /* General image-related variables */
     int png_mask_type;
+    GLuint TextureID = 0;
 
     /* ---------------------------------------- */
     /* Background related variables */
