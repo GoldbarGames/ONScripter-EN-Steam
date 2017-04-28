@@ -43,6 +43,8 @@
 #include "graphics_resize.h"
 #include <cstdio>
 
+#include <cassert>
+
 #ifdef MACOSX
 #include "cocoa_alertbox.h"
 #include "cocoa_directories.h"
@@ -71,8 +73,8 @@ typedef HRESULT (WINAPI *GETFOLDERPATH)(HWND, int, HANDLE, DWORD, LPTSTR);
 #include "resources.h"
 #endif
 
-
-#include "steam_api_wrapper.h"
+#include <steam_api.h>
+//#include "steam_api_wrapper.h"
 
 extern void initSJIS2UTF16();
 extern "C" void waveCallback( int channel );
@@ -124,6 +126,7 @@ static struct FuncLUT{
     {"strsp",   &ONScripterLabel::strspCommand},
     {"stop",   &ONScripterLabel::stopCommand},
     {"steamsetachieve", &ONScripterLabel::steamsetachieveCommand},
+    {"steamoverlay", &ONScripterLabel::steamoverlayCommand},
     {"sp_rgb_gradation",   &ONScripterLabel::sp_rgb_gradationCommand},
     {"spstr",   &ONScripterLabel::spstrCommand},
     {"spreload",   &ONScripterLabel::spreloadCommand},
@@ -356,6 +359,9 @@ static void SDL_Quit_Wrapper()
 }
 
 void ONScripterLabel::initSteam() {
+    bool si = SteamAPI_Init();
+    assert(si == true);
+  
     if(!SteamAPI_Init()) {
       fprintf(stderr, "Unable to initialize Steam; cloud and achievements won't work\n");
     }
@@ -560,6 +566,18 @@ void ONScripterLabel::initSDL()
         }
     }
 #endif
+
+    SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 5 );
+    SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 5 );
+    SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 5 );
+    SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
+    SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+    SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 ) ;
+    SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 ) ;
+    
+    screen_width *= 1.5;
+    screen_height *= 1.5;
+    
     screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG|(fullscreen_mode?SDL_FULLSCREEN:0) );
 
     /* ---------------------------------------- */
@@ -580,6 +598,44 @@ void ONScripterLabel::initSDL()
         errorAndExit(script_h.errbuf, SDL_GetError(), "Init Error", true);
         return; //dummy
     }
+    
+    /* Enable smooth shading */
+    glShadeModel( GL_SMOOTH );
+
+    /* Set the background black */
+    glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+
+    /* Depth buffer setup */
+    glClearDepth( 1.0f );
+
+    /* Enables Depth Testing */
+    glEnable( GL_DEPTH_TEST );
+    glEnable( GL_TEXTURE_2D );
+
+    /* The Type Of Depth Test To Do */
+    glDepthFunc( GL_LEQUAL );
+
+    /* Really Nice Perspective Calculations */
+    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
+    
+    
+    // Initialize the texture
+    GLuint TextureID = 0;
+ 
+    glGenTextures(1, &TextureID);
+    glBindTexture(GL_TEXTURE_2D, TextureID);
+     
+    int Mode = GL_RGB;
+     
+    if(screen_surface->format->BytesPerPixel == 4) {
+        Mode = GL_RGBA;
+    }
+     
+    glTexImage2D(GL_TEXTURE_2D, 0, Mode, screen_surface->w, screen_surface->h, 0, Mode, GL_UNSIGNED_BYTE, screen_surface->pixels);
+    
+    /* Draw it to the screen */
+    SDL_GL_SwapBuffers( );
+    
     //printf("Display: %d x %d (%d bpp)\n", screen_width, screen_height, screen_bpp);
     dirty_rect.setDimension(screen_width, screen_height);
 
@@ -1656,11 +1712,19 @@ void ONScripterLabel::flushDirect( SDL_Rect &rect, int refresh_mode, bool update
                 SDL_BlitSurface( accumulation_surface, &tmp_rects[i], screen_surface, &tmp_rects[i] );
             }
         }
-        if (updaterect) SDL_UpdateRects( screen_surface, 4, tmp_rects );
+        if (updaterect)
+        {
+          SDL_UpdateRects( screen_surface, 4, tmp_rects );
+          SurfaceToTexture( screen_surface);
+        }
     } else { 
         refreshSurface( accumulation_surface, &rect, refresh_mode );
         SDL_BlitSurface( accumulation_surface, &rect, screen_surface, &rect );
-        if (updaterect) SDL_UpdateRect( screen_surface, rect.x, rect.y, rect.w, rect.h );
+        if (updaterect)
+        {
+          SDL_UpdateRect( screen_surface, rect.x, rect.y, rect.w, rect.h );
+          SurfaceToTexture( screen_surface);
+        }
     }
 }
 

@@ -6,6 +6,8 @@
 #
 # Makefile for ONScripter-EN
 
+include Makefile.game
+
 WIN32=true
 OBJSUFFIX=.o
 LIBSUFFIX=.a
@@ -27,7 +29,7 @@ export CFLAGS   := -I$(shell pwd)/extlib/include $(CFLAGS)
 export CPPFLAGS := -I$(shell pwd)/extlib/include $(CPPFLAGS) 
 export LDFLAGS  := -L$(shell pwd)/extlib/lib $(LDFLAGS) 
 export CSTD     := -std=c99
-export CXXSTD   := -std=c++98
+export CXXSTD   := -std=c++11
 
 export CC      := gcc
 export CXX     := g++
@@ -37,8 +39,8 @@ export AR      := ar
 export RANLIB  := ranlib
 
 # ONScripter variables
-OSCFLAGSEXTRA = -Wall  -DUSE_X86_GFX $(OSCTMPFLAGS)
-INCS = -Iextlib/include $(shell $(SDL_CONFIG) --cflags)      \
+OSCFLAGSEXTRA = -Wall -w -DUSE_X86_GFX $(OSCTMPFLAGS)
+INCS = -Iextlib/include $(shell $(SDL_CONFIG) --cflags) -Iextlib/include/steam     \
                         $(shell ./extlib/bin/smpeg-config --cflags)    \
                         $(shell ./extlib/bin/freetype-config --cflags) \
        $(shell [ -d extlib/include/SDL ] && echo -Iextlib/include/SDL)
@@ -59,7 +61,7 @@ LIBS = -Lextlib/lib \
        $(shell ./extlib/bin/smpeg-config --libs) $(shell ./extlib/bin/freetype-config --libs) \
        extlib/lib/libSDL_image$(LIBSUFFIX) extlib/lib/libjpeg$(LIBSUFFIX) extlib/lib/libpng$(LIBSUFFIX) extlib/lib/libz$(LIBSUFFIX) \
        extlib/lib/libSDL_mixer$(LIBSUFFIX) extlib/lib/libogg$(LIBSUFFIX) extlib/lib/libvorbis$(LIBSUFFIX) extlib/lib/libvorbisfile$(LIBSUFFIX) \
-       extlib/lib/libbz2$(LIBSUFFIX) -Wl,--end-group
+       extlib/lib/libbz2$(LIBSUFFIX) extlib/lib/steam_api.dll -lopengl32 -Wl,--end-group
 
 # Remove -DUSE_MESSAGEBOX if you don't want Windows dialog boxes
 DEFS = -DWIN32 -DUSE_MESSAGEBOX -DUSE_OGG_VORBIS
@@ -70,14 +72,14 @@ EXT_OBJS = SDL_win32_main.o win32rc.o graphics_mmx.o graphics_sse2.o
 .SUFFIXES: .o .cpp .h .c
 
 ifdef DEBUG
-OSCFLAGS = -O0 -g -pg -ggdb -pipe -Wpointer-arith -Werror  $(OSCFLAGSEXTRA)
+OSCFLAGS = -O0 -g -pg -ggdb -pipe -Wpointer-arith  $(OSCFLAGSEXTRA)
 export LDFLAGS  := -pg $(LDFLAGS)
 else
   ifdef PROF
-  OSCFLAGS = -O3 -pg -pipe -Wpointer-arith -Werror  $(OSCFLAGSEXTRA)
+  OSCFLAGS = -O3 -pg -pipe -Wpointer-arith   $(OSCFLAGSEXTRA)
   export LDFLAGS  := -pg $(LDFLAGS)
   else
-  OSCFLAGS = -O3 -fomit-frame-pointer -pipe -Wpointer-arith -Werror  $(OSCFLAGSEXTRA)
+  OSCFLAGS = -O3 -fomit-frame-pointer -pipe -Wpointer-arith  $(OSCFLAGSEXTRA)
   endif
 endif
 

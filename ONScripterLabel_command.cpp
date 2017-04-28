@@ -55,7 +55,9 @@
 #include <errno.h>
 #endif
 
-#include "steam_api_wrapper.h"
+#include <cassert>
+#include <steam_api.h>
+//#include "steam_api_wrapper.h"
 
 #define DEFAULT_CURSOR_WAIT    ":l/3,160,2;cursor0.bmp"
 #define DEFAULT_CURSOR_NEWPAGE ":l/3,160,2;cursor1.bmp"
@@ -4240,6 +4242,7 @@ int ONScripterLabel::bltCommand()
 
         SDL_BlitSurface( btndef_info.image_surface, &src_rect, screen_surface, &dst_rect );
         SDL_UpdateRect( screen_surface, dst_rect.x, dst_rect.y, dst_rect.w, dst_rect.h );
+        SurfaceToTexture(screen_surface);
         dirty_rect.clear();
     }
     else{
@@ -4550,14 +4553,34 @@ int ONScripterLabel::resetmenuCommand()
     return RET_CONTINUE;
 }
 
+
+int ONScripterLabel::steamoverlayCommand() {
+  
+    const char *buf = script_h.readStr();
+    //Noop if steam isn't defined so scripts with this command work anyways 
+    
+    bool so = SteamUtils()->IsOverlayEnabled();
+    assert(so == true);
+
+    if(SteamFriends()) {
+      SteamFriends()->ActivateGameOverlay(buf);
+    } else {
+      fprintf(stderr, "Not setting overlay, no Steam\n");
+    }
+
+    return RET_CONTINUE;
+}
+
+
 int ONScripterLabel::steamsetachieveCommand() {
   
-  /* Temporarily comment out while using steam api wrapper
     const char *buf = script_h.readStr();
-    Noop if steam isn't defined so scripts with this command work anyways 
+    //Noop if steam isn't defined so scripts with this command work anyways 
 
     if(SteamUserStats()) {
-      if(!SteamUserStats()->SetAchievement(buf)) {
+      bool sa = SteamUserStats()->SetAchievement(buf);
+      assert(sa == true);
+      if(!sa) {
         //fprintf(stderr, "Error setting achievement %s\n", );
       } else {
         // Trigger the little "Achievement Get" dialog
@@ -4565,7 +4588,7 @@ int ONScripterLabel::steamsetachieveCommand() {
       }
     } else {
       fprintf(stderr, "Not setting achivement, no Steam\n");
-    }*/
+    }
 
     return RET_CONTINUE;
 }

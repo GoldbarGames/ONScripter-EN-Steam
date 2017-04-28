@@ -1,0 +1,78 @@
+# windows
+*.exe
+*.o
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+*.plug
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+#cmake
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+install_manifest.txt
+*.cbp
+*CPack*
+
+#visual studio
+*.vcxproj
+*.obj
+*.tlog
+*.lastbuildstate
+*.sln
+*.log
+*.cd
+*.cache
+*.filters
+*.opensdf
+*.user
+*.suo
+*.sdf
+*.pdb
+*.cxx
+*.unsuccessfulbuild
+*.vspx
+*.exp
+*.ilk
+*.psess
+*.etl
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#other
+stats.txt

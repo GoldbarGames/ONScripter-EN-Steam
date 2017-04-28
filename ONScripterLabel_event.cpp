@@ -1570,6 +1570,7 @@ void ONScripterLabel::runEventLoop()
             if ( !event.active.gain ) break;
           case SDL_VIDEOEXPOSE:
               SDL_UpdateRect( screen_surface, 0, 0, screen_width, screen_height );
+              SurfaceToTexture(screen_surface);
               break;
 
           case SDL_QUIT:

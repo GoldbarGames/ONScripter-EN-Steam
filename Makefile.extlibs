@@ -24,13 +24,16 @@ SMPGSRC = $(ES)/smpeg
 BZSRC   = $(ES)/bzip2-1.0.4
 FTSRC   = $(ES)/freetype-2.3.5
 SDLTSRC = $(ES)/SDL_ttf-2.0.8
+STEAMSDK = $(ES)/steam-sdk
 
 LPREFIX = $(shell pwd)/extlib
 
-CLEAN_TARGETS=clean_sdl_image clean_sdl_mixer clean_bzip2   \
-              clean_smpeg clean_freetype clean_sdl_ttf
-DISTCLEAN_TARGETS=dclean_sdl dclean_sdl_image dclean_sdl_mixer        \
-                  dclean_smpeg dclean_freetype dclean_sdl_ttf
+# CLEAN_TARGETS=clean_sdl_image clean_sdl_mixer clean_bzip2   \
+#               clean_smpeg clean_freetype clean_sdl_ttf
+# DISTCLEAN_TARGETS=dclean_sdl dclean_sdl_image dclean_sdl_mixer        \
+#                   dclean_smpeg dclean_freetype dclean_sdl_ttf
+                  
+# CLEAN_TARGETS = clean_steamsdk
 
 #-- SDL -----------------------------------------------------------------------
 
@@ -268,3 +271,17 @@ $(EL)/libbz2$(LIBSUFFIX): $(foreach fn,$(BZOBJS),$(BZSRC)/$(fn)$(OBJSUFFIX))
 
 $(EI)/bzlib.h: $(BZSRC)/bzlib.h
 	cp $< $@
+
+#-- steam-sdk
+.PHONY: clean_steamsdk
+clean_steamsdk:
+	@-if [ -f $(STEAMSDK)/Makefile ]; then $(MAKE) -C $(STEAMSDK) clean; fi
+
+
+$(STEAMSDK)/Makefile:
+	@cd $(STEAMSDK) && ./configure
+
+
+steam_api=$(EI)/steam/steam_api.h
+$(EI)/steam/steam_api.h: $(STEAMSDK)/Makefile
+	@$(MAKE) -C $(STEAMSDK)

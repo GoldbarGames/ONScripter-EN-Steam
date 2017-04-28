@@ -47,13 +47,16 @@
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 
+#include <SDL_opengl.h>
+#include <GL\GLU.h>
+
 #ifdef MP3_MAD
 #include "MadWrapper.h"
 #else
 #include <smpeg.h>
 #endif
 
-#define DEFAULT_VIDEO_SURFACE_FLAG (SDL_SWSURFACE)
+#define DEFAULT_VIDEO_SURFACE_FLAG (SDL_OPENGLBLIT)
 
 #define DEFAULT_BLIT_FLAG (0)
 //#define DEFAULT_BLIT_FLAG (SDL_RLEACCEL)
@@ -195,6 +198,7 @@ public:
     int strspCommand();
     int stopCommand();
     int steamsetachieveCommand();
+    int steamoverlayCommand();
     int sp_rgb_gradationCommand();
     int spstrCommand();
     int spreloadCommand();
@@ -1067,6 +1071,8 @@ private:
     void makeMonochromeSurface( SDL_Surface *surface, SDL_Rect &clip );
     void refreshSurface( SDL_Surface *surface, SDL_Rect *clip_src, int refresh_mode = REFRESH_NORMAL_MODE );
     void createBackground();
+    
+    void SurfaceToTexture(SDL_Surface * surface);
 
     /* ---------------------------------------- */
     /* rmenu and system call */

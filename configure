@@ -52,6 +52,9 @@ SDL_CONFIG=sdl-config
 SMPEG_CONFIG=smpeg-config
 FREETYPE_CONFIG=freetype-config
 
+GAME=
+STEAM_API=false
+
 VERSION=`awk '/define VER_NUMBER/ {print $3}' version.h | sed s/-en$//`
 
 DISTCLEAN_OTHER=
@@ -189,6 +192,11 @@ do
       --internal-sdl?ttf | -internal-sdl?ttf | --internal-sdlttf | -internal-sdlttf)
         prev=INTERNAL_SDL_TTF
         ;;
+      
+      --steam | -steam | --enable-steam | --with-steam | -with-steam | --extra-gaben)
+        STEAM_API=true ;;
+      --no-steam | --disable-steam | --without-steam)
+        STEAM_API=false ;;
 
     -\? | -h | -help | --help)
       cat <<-__ENDHELP
@@ -219,6 +227,7 @@ do
 	  --with-internal-bzip2       skip check for system libbz2
 	  --with-internal-smpeg       skip check for system libsmpeg
 	  --with-internal-freetype    skip check for system libfreetype
+    --with-steam                link against steam and include steam features
 	__ENDHELP
       exit 0
       ;;
@@ -866,6 +875,8 @@ cat > Makefile <<_EOF
 #
 # Makefile for ONScripter-EN
 
+include Makefile.game
+
 WIN32=$W32
 OBJSUFFIX=$OBJ
 LIBSUFFIX=$LIB
@@ -1028,6 +1039,25 @@ OTHERCONFIG := $OTHERCONFIG
 OTHER_OBJS =
 RC_HDRS =
 _EOF
+
+if $STEAM_API
+then
+cat >> Makefile <<_EOF
+STEAM=true
+EXTRADEPS += \$(steam_api)
+DEFS += -DSTEAM
+INCS += -Iextlib/include/steam
+_EOF
+if [ "$SYS" == "MinGW" ]; then
+cat >> Makefile << _EOF
+LIBS += extlib/lib/steam_api.dll # reference it like this for mingw's poor sake
+_EOF
+else # STEAM, not MinGW
+cat >> Makefile << _EOF
+LIBS += -Lextlib/lib -lsteam_api
+_EOF
+fi
+fi
 
 if [ "$SYS" != "MinGW" ] && [ "$SYS" != "MacOSX" ]; then
 cat >> Makefile <<_EOF
