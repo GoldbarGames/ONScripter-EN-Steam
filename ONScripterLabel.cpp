@@ -360,12 +360,46 @@ static void SDL_Quit_Wrapper()
 
 void ONScripterLabel::initSteam() {
     bool si = SteamAPI_Init();
-    assert(si == true);
+    //assert(si == true);
   
-    if(!SteamAPI_Init()) {
+    if(!si) {
       fprintf(stderr, "Unable to initialize Steam; cloud and achievements won't work\n");
     }
 }
+
+void ONScripterLabel::initOpenGL()
+{
+  /* Enable smooth shading */
+    glShadeModel( GL_SMOOTH );
+
+    /* Set the background black */
+    glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+
+    /* Depth buffer setup */
+    glClearDepth( 1.0f );
+    
+    //glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+
+    glEnable( GL_TEXTURE_2D );
+    glEnable(GL_MULTISAMPLE);  
+    glEnable(GL_BLEND);
+    
+    /* The Type Of Depth Test To Do */
+    glDepthFunc( GL_LEQUAL );
+
+    /* Really Nice Perspective Calculations */
+    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
+    
+    // Initialize the texture
+ 
+    glGenTextures(1, &TextureID);
+    glBindTexture(GL_TEXTURE_2D, TextureID);
+    glTexImage2D(GL_TEXTURE_2D, 0, screen_surface->format->BytesPerPixel, screen_surface->w, screen_surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, screen_surface->pixels);
+    
+    /* Draw it to the screen */
+    SDL_GL_SwapBuffers( );
+}
+
 
 void ONScripterLabel::initSDL()
 {
@@ -595,35 +629,7 @@ void ONScripterLabel::initSDL()
         return; //dummy
     }
     
-    /* Enable smooth shading */
-    glShadeModel( GL_SMOOTH );
-
-    /* Set the background black */
-    glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
-
-    /* Depth buffer setup */
-    glClearDepth( 1.0f );
-    
-    //glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-
-    glEnable( GL_TEXTURE_2D );
-    glEnable(GL_MULTISAMPLE);  
-    glEnable(GL_BLEND);
-    
-    /* The Type Of Depth Test To Do */
-    glDepthFunc( GL_LEQUAL );
-
-    /* Really Nice Perspective Calculations */
-    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
-    
-    // Initialize the texture
- 
-    glGenTextures(1, &TextureID);
-    glBindTexture(GL_TEXTURE_2D, TextureID);
-    glTexImage2D(GL_TEXTURE_2D, 0, screen_surface->format->BytesPerPixel, screen_surface->w, screen_surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, screen_surface->pixels);
-    
-    /* Draw it to the screen */
-    SDL_GL_SwapBuffers( );
+    initOpenGL();
     
     //printf("Display: %d x %d (%d bpp)\n", screen_width, screen_height, screen_bpp);
     dirty_rect.setDimension(screen_width, screen_height);

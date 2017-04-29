@@ -719,6 +719,9 @@ int ONScripterLabel::playMPEG( const char *filename, bool async_flag, bool use_p
         }
         SMPEG_enablevideo( mpeg_sample, 1 );
         SMPEG_setdisplay( mpeg_sample, screen_surface, NULL, NULL );
+        
+        SurfaceToTexture(screen_surface);
+        
         if (use_pos) {
             SMPEG_scaleXY( mpeg_sample, width, height );
             SMPEG_move( mpeg_sample, xpos, ypos );
@@ -814,12 +817,27 @@ int ONScripterLabel::playMPEG( const char *filename, bool async_flag, bool use_p
                         if ( !SDL_WM_ToggleFullScreen( screen_surface ) ){
                             SMPEG_pause( mpeg_sample );
                             SDL_FreeSurface(screen_surface);
+                            
+                            glDeleteTextures(1, &TextureID);
                             if ( fullscreen_mode )
-                                screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG );
+                            {
+                              screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG );
+                              const SDL_VideoInfo* info = SDL_GetVideoInfo();
+                              int native_width = info->current_w;
+                              int native_height = info->current_h;
+                              glViewport( 0, 0, native_width, native_height );
+                            }
+                                
                             else
-                                screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG|SDL_FULLSCREEN );
+                            {
+                              screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG|SDL_FULLSCREEN );
+                              glViewport( 0, 0, screen_width, screen_height );
+                            }
+
+                            initOpenGL();
                             SMPEG_setdisplay( mpeg_sample, screen_surface, NULL, NULL );
                             SMPEG_play( mpeg_sample );
+                            SurfaceToTexture(screen_surface);
                         }
 #endif
                         fullscreen_mode = !fullscreen_mode;

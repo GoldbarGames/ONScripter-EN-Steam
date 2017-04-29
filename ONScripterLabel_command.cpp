@@ -1890,7 +1890,19 @@ int ONScripterLabel::menu_windowCommand()
     if ( fullscreen_mode ){
 #ifndef PSP
         if (async_movie) SMPEG_pause( async_movie );
+        
+        glDeleteTextures(1, &TextureID);
+        
         screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG );
+        
+        const SDL_VideoInfo* info = SDL_GetVideoInfo();
+        int native_width = info->current_w;
+        int native_height = info->current_h;
+        glViewport( 0, 0, native_width, native_height );
+        
+        initOpenGL();
+        SurfaceToTexture(screen_surface);
+        
         SDL_Rect rect = {0, 0, screen_width, screen_height};
         flushDirect( rect, refreshMode() );
         if (async_movie){
@@ -1925,14 +1937,31 @@ int ONScripterLabel::menu_fullCommand()
     if ( !fullscreen_mode ){
 #ifndef PSP
         if (async_movie) SMPEG_pause( async_movie );
+        
+        glDeleteTextures(1, &TextureID);
+
         screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG|SDL_FULLSCREEN );
+       
         if (screen_surface)
-            fullscreen_mode = true;
-        else {
+        {
+          fullscreen_mode = true;
+          
+        }
+        else 
+        {
             fprintf(stderr, "*** menu_full: Error: %s (using windowed surface instead) ***\n", SDL_GetError());
             screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG );
             fullscreen_mode = false;
         }
+        
+        const SDL_VideoInfo* info = SDL_GetVideoInfo();
+        int native_width = info->current_w;
+        int native_height = info->current_h;
+        glViewport( 0, 0, native_width, native_height );
+        
+        initOpenGL();
+        SurfaceToTexture(screen_surface);
+        
         SDL_Rect rect = {0, 0, screen_width, screen_height};
         flushDirect( rect, refreshMode() );
         if (async_movie){
