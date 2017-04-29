@@ -1935,8 +1935,6 @@ void ONScripterLabel::executeLabel()
         
         if (!(ret & RET_NO_READ)) readToken();
         
-        SurfaceToTexture(accumulation_surface);
-        //SDL_GL_SwapBuffers( );
     }
 
     current_label_info = script_h.lookupLabelNext( current_label_info.name );
