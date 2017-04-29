@@ -1528,6 +1528,10 @@ int ScriptHandler::readScript( DirPaths &path )
                 screen_size = SCREEN_SIZE_400x300;
             else if ( !strncmp( buf, "320", 3 ) )
                 screen_size = SCREEN_SIZE_320x240;
+            else if ( !strncmp( buf, "120", 3 ) )
+                screen_size = SCREEN_SIZE_1200x900;
+            else if ( !strncmp( buf, "128", 3 ) )
+                screen_size = SCREEN_SIZE_1280x720;
             else
                 screen_size = SCREEN_SIZE_640x480;
             buf += 3;

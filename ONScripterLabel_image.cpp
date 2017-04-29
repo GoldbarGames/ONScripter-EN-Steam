@@ -698,9 +698,7 @@ void ONScripterLabel::SurfaceToTexture(SDL_Surface * surface)
 {
   
   /* Clear the color and depth buffers. */
-  glClear( GL_COLOR_BUFFER_BIT );
-  
-  //int Mode = surface->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB;
+  glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
   
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -712,12 +710,11 @@ void ONScripterLabel::SurfaceToTexture(SDL_Surface * surface)
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
   
   glBindTexture(GL_TEXTURE_2D, TextureID);
- 
-  // For Ortho mode, of course
+
   int X = 0;
   int Y = 0;
-  int Width = 800;
-  int Height = 600;
+  int Width = surface->w;
+  int Height = surface->h;
    
   glBegin(GL_QUADS);
       glTexCoord2f(0, 0); glVertex3f(X, Y, 0);

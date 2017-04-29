@@ -570,13 +570,9 @@ void ONScripterLabel::initSDL()
     SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
     SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
     SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
+    SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 8 );
     SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
     SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-    //SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 ) ;
-    //SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 ) ;
-    
-    //screen_width *= 1.5;
-    //screen_height *= 1.5;
     
     screen_surface = SDL_SetVideoMode( screen_width, screen_height, screen_bpp, DEFAULT_VIDEO_SURFACE_FLAG|(fullscreen_mode?SDL_FULLSCREEN:0) );
 
@@ -607,23 +603,24 @@ void ONScripterLabel::initSDL()
 
     /* Depth buffer setup */
     glClearDepth( 1.0f );
+    
+    //glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
-    /* Enables Depth Testing */
-    glEnable( GL_DEPTH_TEST );
     glEnable( GL_TEXTURE_2D );
-
+    glEnable(GL_MULTISAMPLE);  
+    glEnable(GL_BLEND);
+    
     /* The Type Of Depth Test To Do */
     glDepthFunc( GL_LEQUAL );
 
     /* Really Nice Perspective Calculations */
     glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
     
-    
     // Initialize the texture
  
     glGenTextures(1, &TextureID);
     glBindTexture(GL_TEXTURE_2D, TextureID);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, screen_surface->w, screen_surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, screen_surface->pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, screen_surface->format->BytesPerPixel, screen_surface->w, screen_surface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, screen_surface->pixels);
     
     /* Draw it to the screen */
     SDL_GL_SwapBuffers( );
@@ -1935,6 +1932,8 @@ void ONScripterLabel::executeLabel()
         
         if (!(ret & RET_NO_READ)) readToken();
         
+        //SurfaceToTexture(accumulation_surface);
+        //SDL_GL_SwapBuffers( );
     }
 
     current_label_info = script_h.lookupLabelNext( current_label_info.name );

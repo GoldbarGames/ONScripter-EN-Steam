@@ -461,6 +461,28 @@ int ScriptParser::open()
 
     switch ( script_h.screen_size ){
     //for PDA, set ratios to create a 320x240 screen
+      case ScriptHandler::SCREEN_SIZE_1280x720:
+#ifdef PDA
+        screen_ratio1 = 2;
+        screen_ratio2 = 5;
+#else
+        screen_ratio1 = 1;
+        screen_ratio2 = 1;
+#endif
+        script_width = 1280;
+        script_height = 720;
+        break;
+      case ScriptHandler::SCREEN_SIZE_1200x900:
+#ifdef PDA
+        screen_ratio1 = 2;
+        screen_ratio2 = 5;
+#else
+        screen_ratio1 = 1;
+        screen_ratio2 = 1;
+#endif
+        script_width = 1200;
+        script_height = 900;
+        break;
       case ScriptHandler::SCREEN_SIZE_800x600:
 #ifdef PDA
         screen_ratio1 = 2;
