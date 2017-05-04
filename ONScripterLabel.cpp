@@ -126,6 +126,8 @@ static struct FuncLUT{
     {"strsp",   &ONScripterLabel::strspCommand},
     {"stop",   &ONScripterLabel::stopCommand},
     {"steamsetachieve", &ONScripterLabel::steamsetachieveCommand},
+    {"steamresetstats", &ONScripterLabel::steamresetstatsCommand},
+    {"steamresetachieves", &ONScripterLabel::steamresetachievesCommand},
     {"steamoverlay", &ONScripterLabel::steamoverlayCommand},
     {"sp_rgb_gradation",   &ONScripterLabel::sp_rgb_gradationCommand},
     {"spstr",   &ONScripterLabel::spstrCommand},
@@ -362,8 +364,18 @@ void ONScripterLabel::initSteam() {
     bool si = SteamAPI_Init();
     //assert(si == true);
   
-    if(!si) {
+    if(!si) 
+    {
       fprintf(stderr, "Unable to initialize Steam; cloud and achievements won't work\n");
+    }
+    else
+    {
+      bool loggedOn = SteamUser()->BLoggedOn();
+      if (loggedOn)
+      {
+        bool ss = SteamUserStats()->RequestCurrentStats();
+        assert(ss == true);
+      }
     }
 }
 

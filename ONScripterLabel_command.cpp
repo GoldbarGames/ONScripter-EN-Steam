@@ -4621,3 +4621,24 @@ int ONScripterLabel::steamsetachieveCommand() {
 
     return RET_CONTINUE;
 }
+
+// Resets all Steam Stats, excluding achievements
+int ONScripterLabel::steamresetstatsCommand() {
+  
+    if(SteamUserStats()) {
+     SteamUserStats()->ResetAllStats(false);
+    }
+
+    return RET_CONTINUE;
+}
+
+// Resets all Steam Stats, including achievements
+int ONScripterLabel::steamresetachievesCommand() {
+  
+    if(SteamUserStats()) {
+     SteamUserStats()->ResetAllStats(true);
+    }
+
+    return RET_CONTINUE;
+}
+

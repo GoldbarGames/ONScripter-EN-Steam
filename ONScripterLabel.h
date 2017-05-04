@@ -198,6 +198,8 @@ public:
     int strspCommand();
     int stopCommand();
     int steamsetachieveCommand();
+    int steamresetstatsCommand();
+    int steamresetachievesCommand();
     int steamoverlayCommand();
     int sp_rgb_gradationCommand();
     int spstrCommand();
