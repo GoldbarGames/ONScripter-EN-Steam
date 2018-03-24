@@ -8,6 +8,8 @@ A version of ONScripter-EN designed to work with the Steam API
 
 This will create "onscripter-en.exe"
 
+Please also make sure to place the Steam files in the /include and /lib folders before compiling.
+
 # Acknowledgements
 Essentially we are just porting the Steam-related code from [this PONscripter repository](https://github.com/sekaiproject/ponscripter-fork/commits/master)
 Special thanks to Euan Kemp and Daniel Oaks for pushing the Steam-specific code, and to Uncle Mion and Haeleth for previously maintaining ONScripter-EN
