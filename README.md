@@ -3,10 +3,11 @@ A version of ONScripter-EN designed to work with the Steam API
 
 # Compiling on Windows
 1. Install MinGW and MSYS
-2. Run "./configure --with-internal-libs"
-3. Run "make"
+2. Run "make"
 
 This will create "onscripter-en.exe"
+
+(DO NOT run ./configure, this will overwrite the makefile and compiling will not work)
 
 Please also make sure to place the Steam files in the /include and /lib folders before compiling.
 
